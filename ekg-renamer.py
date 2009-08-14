@@ -105,17 +105,19 @@ class PDFTKSplitter(PDFSplitter):
     def _get_path(self):
         path = os.getenv('PDFTK')
         if path:
-            pass
-        elif os.path.isfile('pdftk.exe'):
-            path = 'pdftk.exe'
-        elif os.path.isfile('pdftk'):
-            path = './pdftk'
-        elif os.path.isfile(PDFTK_PATH):
-            path = PDFTK_PATH
-        else:
-            print 'Kunne ikke finde pdftk. Sæt PDFTK variablen.'
-            sys.exit(1)
-        return os.path.abspath(path)
+            return os.path.abspath(path)
+        if os.name == 'nt':
+            if os.path.isfile('pdftk.exe'):
+                return os.path.abspath('pdftk.exe')
+            if os.path.isfile(PDFTK_PATH):
+                os.path.abspath(PDFTK_PATH)
+        elif os.name == 'posix':
+            for path in os.getenv('PATH', '').split(os.pathsep):
+                path = os.path.join(path, 'pdftk')
+                if os.path.isfile(path):
+                    return path
+        print 'Kunne ikke finde pdftk. Sæt PDFTK variablen.'
+        sys.exit(1)
 
     def _create_cmd(self, pdf):
         return [self.path, pdf, 'burst']
