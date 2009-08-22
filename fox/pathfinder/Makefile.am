@@ -1,8 +1,8 @@
 ## Process this file with automake to produce Makefile.in
 
-CXXFLAGS = @CXXFLAGS@ @X_CFLAGS@
+AM_CXXFLAGS = @X_CFLAGS@
 INCLUDES = -I$(top_srcdir)/include -I$(top_builddir)/include
-RESWRAP  = $(top_builddir)/utils/reswrap
+RESWRAP  = $(top_builddir)/utils/reswrap$(EXEEXT)
 SUFFIXES = .gif .bmp
 LDADD	 = $(top_builddir)/src/libFOX-1.6.la -lm
 

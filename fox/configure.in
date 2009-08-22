@@ -62,7 +62,8 @@ AC_PROG_MAKE_SET
 AC_PROG_CC
 AC_PROG_CPP
 AC_PROG_CXX
-AM_PROG_LIBTOOL
+AC_LIBTOOL_WIN32_DLL
+AC_PROG_LIBTOOL
 
 dnl Run tests in C++
 dnl AC_LANG_CPLUSPLUS
@@ -119,7 +120,7 @@ fi
 if test "x$CYGWIN" = "xyes" -o "x$MINGW32" = "xyes" ; then
 AC_DEFINE(WIN32)
 LIBS="${LIBS} -lcomctl32 -lwsock32 -lwinspool -lmpr -lgdi32"
-LDFLAGS="${LDFLAGS} -mwindows -e _mainCRTStartup"
+LDFLAGS="${LDFLAGS} -mwindows -e _mainCRTStartup -no-undefined"
 AC_DEFINE(UNICODE)
 if test "x$with_mingw32" != "x" ; then
 CPPFLAGS="${CPPFLAGS} -I$with_mingw32/include"
@@ -213,7 +214,7 @@ fi
 
 dnl Using reentrant library calls
 AC_MSG_CHECKING(for thread-safe library calls)
-AC_ARG_ENABLE(enable_threadsafe,[  --enable-threadsafe     Thread-safe library calls])
+AC_ARG_ENABLE(threadsafe,[  --enable-threadsafe     Thread-safe library calls])
 AC_MSG_RESULT([$enable_threadsafe])
 if test "x$enable_threadsafe" != "xno" ; then
 CXXFLAGS="${CXXFLAGS} -DFOX_THREAD_SAFE=1 -D_POSIX_PTHREAD_SEMANTICS -D_REENTRANT"

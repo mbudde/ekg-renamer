@@ -1,14 +1,14 @@
 ## Process this file with automake to produce Makefile.in
 
-CXXFLAGS = @CXXFLAGS@ @X_CFLAGS@
+AM_CXXFLAGS = @X_CFLAGS@
 INCLUDES = -I$(top_srcdir)/include -I$(top_builddir)/include
-RESWRAP  = $(top_builddir)/utils/reswrap
+RESWRAP  = $(top_builddir)/utils/reswrap$(EXEEXT)
 SUFFIXES = .gif .bmp
 LDADD	 =  libCHART-1.6.la $(top_builddir)/src/libFOX-1.6.la -lm
 
 lib_LTLIBRARIES = libCHART-1.6.la
 
-libCHART_1_6_la_LIBADD  = $(X_LIBS) $(X_BASE_LIBS) $(X_EXTRA_LIBS)
+libCHART_1_6_la_LIBADD  = $(top_builddir)/src/libFOX-1.6.la
 
 libCHART_1_6_la_LDFLAGS = \
         -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)    \
