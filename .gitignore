@@ -1,0 +1,14 @@
+*.o
+*.lo
+*.pc
+*.spec
+fox/*/*.exe
+fox/Makefile
+fox/*/Makefile
+fox/*/*/Makefile
+fox/build-log
+fox/config.log
+fox/config.status
+fox/fox-config
+fox/fox-config
+fox/libtool
