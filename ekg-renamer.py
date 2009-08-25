@@ -187,7 +187,7 @@ def main():
             line = line.split(',')
         else:
             line = line.split()
-            procpr[line[0]] = line[1]
+        procpr[line[0]] = line[1]
 
     with open('cpr-data.txt', 'w') as cprfile:
         cPickle.dump(procpr, cprfile)
