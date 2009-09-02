@@ -66,8 +66,8 @@ def input_with_default(prompt='', default=None):
     else:
         return ans
 
-def input_with_choice(prompt='', good=('y', 'j'), bad=('n',)):
-    prompt += ' [%s%s]' % (''.join(good), ''.join(bad))
+def input_with_choice(prompt='', good='j', bad='n'):
+    prompt += ' [%s/%s]' % (good, bad)
     while True:
         ans = input(prompt)
         if ans.lower() in good:
